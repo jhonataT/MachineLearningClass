@@ -2,6 +2,10 @@
   Accuracy historic:
   1. 0.5459183673469388
   2. 0.5459183673469388
+  3. Quando todos estão com mediana -> 0.5663265306122449
+  ?? {"accuracy":0.5459183673469388,"old_accuracy":0.64795918367347}
+  ?? {"accuracy":0.5459183673469388,"old_accuracy":0.64795918367347}
+  ?? {"accuracy":0.5510204081632653,"old_accuracy":0.64795918367347} // quando se coloca 0 em todos não-diabéticos
   3. Waiting...
 """
 
@@ -103,4 +107,3 @@ def plotBoxPlot(dataFrame):
 # print(data.head());
 # print(df);
 # print(dfMean);
-plotBoxPlot(data);

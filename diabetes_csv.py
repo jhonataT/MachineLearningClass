@@ -49,16 +49,16 @@ y_pred = neigh.predict(data_app)
 # Enviando previsões realizadas com o modelo para o servidor
 URL = "https://aydanomachado.com/mlclass/01_Preprocessing.php"
 
-#TODO Substituir pela sua chave aqui
+# #TODO Substituir pela sua chave aqui
 DEV_KEY = "jst"
 
-# json para ser enviado para o servidor
+# # json para ser enviado para o servidor
 data = {'dev_key':DEV_KEY,
         'predictions':pd.Series(y_pred).to_json(orient='values')}
 
 # Enviando requisição e salvando o objeto resposta
-# r = requests.post(url = URL, data = data)
+r = requests.post(url = URL, data = data)
 
 # Extraindo e imprimindo o texto da resposta
-# pastebin_url = r.text
-# print(" - Resposta do servidor:\n", r.text, "\n")
+pastebin_url = r.text
+print(" - Resposta do servidor:\n", r.text, "\n")
