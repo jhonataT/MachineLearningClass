@@ -12,9 +12,20 @@ no servidor.
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 import requests
+from data_analysis_csv import updateNaNColumn
 
 print('\n - Lendo o arquivo com o dataset sobre diabetes')
 data = pd.read_csv('diabetes_dataset.csv')
+
+updateNaNColumn(data, 'SkinThickness', 'mean');
+updateNaNColumn(data, 'BloodPressure', 'median');
+updateNaNColumn(data, 'Insulin', 'mean');
+updateNaNColumn(data, 'BMI', 'mean');
+updateNaNColumn(data, 'Glucose', 'median');
+
+# Informações ausentes para cada coluna
+emptyColumns = data.isnull().sum();
+print(emptyColumns)
 
 # Criando X and y par ao algorítmo de aprendizagem de máquina.\
 print(' - Criando X e y para o algoritmo de aprendizagem a partir do arquivo diabetes_dataset')
@@ -39,15 +50,15 @@ y_pred = neigh.predict(data_app)
 URL = "https://aydanomachado.com/mlclass/01_Preprocessing.php"
 
 #TODO Substituir pela sua chave aqui
-DEV_KEY = "JST"
+DEV_KEY = "jst"
 
 # json para ser enviado para o servidor
 data = {'dev_key':DEV_KEY,
         'predictions':pd.Series(y_pred).to_json(orient='values')}
 
 # Enviando requisição e salvando o objeto resposta
-r = requests.post(url = URL, data = data)
+# r = requests.post(url = URL, data = data)
 
 # Extraindo e imprimindo o texto da resposta
-pastebin_url = r.text
-print(" - Resposta do servidor:\n", r.text, "\n")
+# pastebin_url = r.text
+# print(" - Resposta do servidor:\n", r.text, "\n")
